@@ -1,4 +1,4 @@
-import { uuid } from "crossfoam-dev-utils";
+import { uuid } from "@crossfoam/utils";
 import * as d3 from "d3";
 
 const modalButtons = (buttons): string => {

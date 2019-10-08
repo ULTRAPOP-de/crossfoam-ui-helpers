@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var crossfoam_dev_utils_1 = require("crossfoam-dev-utils");
+var utils_1 = require("@crossfoam/utils");
 var d3 = require("d3");
 var modalButtons = function (buttons) {
     var buttonStr = "";
@@ -27,7 +27,7 @@ var isRetinaDisplay = function () {
 exports.isRetinaDisplay = isRetinaDisplay;
 var modal = function (content) {
     var modalContainer = document.createElement("div");
-    var modalUUID = crossfoam_dev_utils_1.uuid();
+    var modalUUID = utils_1.uuid();
     modalContainer
         .setAttribute("class", "cf--modal-container");
     modalContainer
@@ -275,7 +275,7 @@ var logoSpinner = function (target, size, color) {
     var width = size;
     var height = size;
     var radius = size / 4;
-    var nUuid = "spinner" + crossfoam_dev_utils_1.uuid();
+    var nUuid = "spinner" + utils_1.uuid();
     var strokeScale = d3.scaleLinear().domain([40, 100]).range([1, 5]);
     var svg = d3.select(target).append("svg")
         .attr("id", nUuid)
@@ -348,7 +348,7 @@ var logoSpinner = function (target, size, color) {
 exports.logoSpinner = logoSpinner;
 var blockSplash = function (message) {
     var modalContainer = document.createElement("div");
-    var modalUUID = crossfoam_dev_utils_1.uuid();
+    var modalUUID = utils_1.uuid();
     modalContainer
         .setAttribute("class", "cf--modal-container");
     modalContainer

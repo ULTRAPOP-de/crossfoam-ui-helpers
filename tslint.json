@@ -1,6 +1,6 @@
 {
+  "extends": "./tslint-recommended.json",
   "defaultSeverity": "error",
-  "extends": "tslint:recommended",
   "jsRules": {},
   "rules": {
     "no-bitwise": false,
