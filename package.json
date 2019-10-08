@@ -1,6 +1,6 @@
 {
   "name": "@crossfoam/ui-helpers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ui helpers",
   "main": "dst/index.js",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sebastian-meier/crossfoam-dev-ui-helpers.git"
+    "url": "git+https://github.com/ultrapop-de/crossfoam-ui-helpers.git"
   },
   "author": "Sebastian Meier @seb_meier",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sebastian-meier/crossfoam-dev-ui-helpers/issues"
+    "url": "https://github.com/ultrapop-de/crossfoam-ui-helpers/issues"
   },
-  "homepage": "https://github.com/sebastian-meier/crossfoam-dev-ui-helpers#readme",
+  "homepage": "https://github.com/ultrapop-de/crossfoam-ui-helpers#readme",
   "nodemonConfig": {
     "ignore": [
       "node_modules/*",
