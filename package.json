@@ -1,0 +1,44 @@
+{
+  "name": "@crossfoam/ui-helpers",
+  "version": "1.0.0",
+  "description": "ui helpers",
+  "main": "dst/index.js",
+  "scripts": {
+    "lint": "tslint -p tslint.json --force",
+    "build": "tsc",
+    "typescript": "npm run lint && npm run build",
+    "watch": "nodemon "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastian-meier/crossfoam-dev-ui-helpers.git"
+  },
+  "author": "Sebastian Meier @seb_meier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sebastian-meier/crossfoam-dev-ui-helpers/issues"
+  },
+  "homepage": "https://github.com/sebastian-meier/crossfoam-dev-ui-helpers#readme",
+  "nodemonConfig": {
+    "ignore": [
+      "node_modules/*",
+      "dst/*"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm run typescript",
+    "ext": "ts"
+  },
+  "devDependencies": {
+    "@types/core-js": "^2.5.0",
+    "nodemon": "^1.18.9",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2",
+    "web-ext-types": "^3.1.0"
+  },
+  "dependencies": {
+    "@crossfoam/utils": "^1.0.1",
+    "d3": "^5.11.0"
+  }
+}
