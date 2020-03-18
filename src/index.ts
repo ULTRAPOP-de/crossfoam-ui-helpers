@@ -40,8 +40,13 @@ const isRetinaDisplay = () => {
 
 const modal = (content): Promise<any> => {
 
+  if ("uuid" in content && document.querySelector("#cf--modal-container-" + content.uuid) !== null) {
+    const el = document.querySelector("#cf--modal-container-" + content.uuid);
+    el.parentNode.removeChild(el);
+  }
+
   const modalContainer = document.createElement("div");
-  const modalUUID = uuid();
+  const modalUUID = content.uuid || uuid();
 
   modalContainer
     .setAttribute("class", "cf--modal-container");
