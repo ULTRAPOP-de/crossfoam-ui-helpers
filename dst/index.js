@@ -217,6 +217,7 @@ var colorPicker = function (containerId, hiddenId, width, color) {
         .style("margin-bottom", "5px");
     var canvas = colorContainer.append("canvas")
         .style("position", "relative")
+        .style("margin-bottom", "-" + (height - 5))
         .attr("width", width + "px")
         .attr("height", height + "px");
     canvas.call(d3.drag().on("drag", function () {
@@ -230,7 +231,7 @@ var colorPicker = function (containerId, hiddenId, width, color) {
     var svg = colorContainer.append("svg")
         .style("position", "relative")
         .style("left", 0)
-        .style("top", "-" + height + "px")
+        .style("top", "-5px")
         .attr("width", width + "px")
         .attr("height", height + "px")
         .style("pointer-events", "none");

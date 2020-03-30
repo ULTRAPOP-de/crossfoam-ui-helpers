@@ -254,6 +254,7 @@ const colorPicker = (containerId: string, hiddenId: string, width: number, color
 
   const canvas = colorContainer.append("canvas")
     .style("position", "relative")
+    .style("margin-bottom", `-${height - 5}`)
     .attr("width", `${width}px`)
     .attr("height", `${height}px`);
 
@@ -270,7 +271,7 @@ const colorPicker = (containerId: string, hiddenId: string, width: number, color
   const svg = colorContainer.append("svg")
     .style("position", "relative")
     .style("left", 0)
-    .style("top", `-${height}px`)
+    .style("top", `-5px`)
     .attr("width", `${width}px`)
     .attr("height", `${height}px`)
     .style("pointer-events", "none");
