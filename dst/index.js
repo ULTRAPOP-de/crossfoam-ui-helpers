@@ -217,7 +217,7 @@ var colorPicker = function (containerId, hiddenId, width, color) {
         .style("margin-bottom", "5px");
     var canvas = colorContainer.append("canvas")
         .style("position", "relative")
-        .style("margin-bottom", "-" + (height - 5))
+        .style("margin-bottom", "-" + (height - 5) + "px")
         .attr("width", width + "px")
         .attr("height", height + "px");
     canvas.call(d3.drag().on("drag", function () {

@@ -254,7 +254,7 @@ const colorPicker = (containerId: string, hiddenId: string, width: number, color
 
   const canvas = colorContainer.append("canvas")
     .style("position", "relative")
-    .style("margin-bottom", `-${height - 5}`)
+    .style("margin-bottom", `-${height - 5}px`)
     .attr("width", `${width}px`)
     .attr("height", `${height}px`);
 

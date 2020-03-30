@@ -1,6 +1,6 @@
 {
   "name": "@crossfoam/ui-helpers",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "ui helpers",
   "main": "dst/index.js",
   "scripts": {
@@ -31,14 +31,14 @@
     "ext": "ts"
   },
   "devDependencies": {
-    "@types/core-js": "^2.5.0",
-    "nodemon": "^1.18.9",
-    "tslint": "^5.12.1",
-    "typescript": "^3.2.2",
+    "@types/core-js": "^2.5.3",
+    "nodemon": "^1.19.4",
+    "tslint": "^5.20.1",
+    "typescript": "^3.8.3",
     "web-ext-types": "^3.1.0"
   },
   "dependencies": {
     "@crossfoam/utils": "^1.0.1",
-    "d3": "^5.11.0"
+    "d3": "^5.15.0"
   }
 }
