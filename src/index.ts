@@ -335,7 +335,7 @@ const logoSpinner = (target: string, size: number, color: string = "#338498"): (
   const radius = size / 4;
   const nUuid = "spinner" + uuid();
 
-  const strokeScale = d3.scaleLinear().domain([40, 100]).range([1, 5]);
+  const strokeScale = d3.scaleLinear().domain([40, 100]).range([2, 5]);
 
   const svg = d3.select(target).append("svg")
     .attr("id", nUuid)
@@ -396,9 +396,9 @@ const logoSpinner = (target: string, size: number, color: string = "#338498"): (
 
       circles
         .data(data)
-        .attr("cy", (d) => pY(radius + d.radius * (1 + Math.sin(rotation * 2)) / 2, d.offset + rotation))
-        .attr("cx", (d) => pX(radius + d.radius * (1 + Math.sin(rotation * 2)) / 2, d.offset + rotation))
-        .attr("r", (d) => d.size * (1 + Math.sin(rotation * 2)) / 2 + radius);
+        .attr("cy", (d) => pY(radius + d.radius * Math.abs(Math.sin(rotation)) / 2, d.offset + rotation))
+        .attr("cx", (d) => pX(radius + d.radius * Math.abs(Math.sin(rotation)) / 2, d.offset + rotation))
+        .attr("r", (d) => d.size * Math.abs(Math.sin((rotation) * 2)) / 2 + radius);
     }
   };
 
@@ -426,18 +426,20 @@ const blockSplash = (message: string): () => void => {
   modalContainer
     .setAttribute("class", "cf--modal-container");
 
+  console.log("blockSplash");
+
   modalContainer
     .setAttribute("id", "cf--modal-container-" + modalUUID);
 
   modalContainer
     .innerHTML = `<div class="cf--modal-box cf--modal-box-transparent">
     <div class="cf--modal-spinner"></div>
-    <div class="cf--modal-message">${message || ""}</div>
+    <div class="cf--modal-message">v3 ${message || ""}</div>
 </div>`;
 
   document.body.appendChild(modalContainer);
 
-  const destroySpinner = logoSpinner("#cf--modal-container-" + modalUUID + " .cf--modal-spinner", 100, "#ffffff");
+  const destroySpinner = logoSpinner("#cf--modal-container-" + modalUUID + " .cf--modal-spinner", 50, "#ffffff");
 
   return () => {
     destroySpinner();

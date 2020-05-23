@@ -281,7 +281,7 @@ var logoSpinner = function (target, size, color) {
     var height = size;
     var radius = size / 4;
     var nUuid = "spinner" + utils_1.uuid();
-    var strokeScale = d3.scaleLinear().domain([40, 100]).range([1, 5]);
+    var strokeScale = d3.scaleLinear().domain([40, 100]).range([2, 5]);
     var svg = d3.select(target).append("svg")
         .attr("id", nUuid)
         .attr("class", "logoSpinner")
@@ -332,9 +332,9 @@ var logoSpinner = function (target, size, color) {
             }
             circles
                 .data(data)
-                .attr("cy", function (d) { return pY(radius + d.radius * (1 + Math.sin(rotation * 2)) / 2, d.offset + rotation); })
-                .attr("cx", function (d) { return pX(radius + d.radius * (1 + Math.sin(rotation * 2)) / 2, d.offset + rotation); })
-                .attr("r", function (d) { return d.size * (1 + Math.sin(rotation * 2)) / 2 + radius; });
+                .attr("cy", function (d) { return pY(radius + d.radius * Math.abs(Math.sin(rotation)) / 2, d.offset + rotation); })
+                .attr("cx", function (d) { return pX(radius + d.radius * Math.abs(Math.sin(rotation)) / 2, d.offset + rotation); })
+                .attr("r", function (d) { return d.size * Math.abs(Math.sin((rotation) * 2)) / 2 + radius; });
         }
     };
     var inter = setInterval(update, 30);
@@ -356,12 +356,13 @@ var blockSplash = function (message) {
     var modalUUID = utils_1.uuid();
     modalContainer
         .setAttribute("class", "cf--modal-container");
+    console.log("blockSplash");
     modalContainer
         .setAttribute("id", "cf--modal-container-" + modalUUID);
     modalContainer
-        .innerHTML = "<div class=\"cf--modal-box cf--modal-box-transparent\">\n    <div class=\"cf--modal-spinner\"></div>\n    <div class=\"cf--modal-message\">" + (message || "") + "</div>\n</div>";
+        .innerHTML = "<div class=\"cf--modal-box cf--modal-box-transparent\">\n    <div class=\"cf--modal-spinner\"></div>\n    <div class=\"cf--modal-message\">v3 " + (message || "") + "</div>\n</div>";
     document.body.appendChild(modalContainer);
-    var destroySpinner = logoSpinner("#cf--modal-container-" + modalUUID + " .cf--modal-spinner", 100, "#ffffff");
+    var destroySpinner = logoSpinner("#cf--modal-container-" + modalUUID + " .cf--modal-spinner", 50, "#ffffff");
     return function () {
         destroySpinner();
         d3.selectAll("#cf--modal-container-" + modalUUID).remove();
