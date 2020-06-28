@@ -426,8 +426,6 @@ const blockSplash = (message: string): () => void => {
   modalContainer
     .setAttribute("class", "cf--modal-container");
 
-  console.log("blockSplash");
-
   modalContainer
     .setAttribute("id", "cf--modal-container-" + modalUUID);
 

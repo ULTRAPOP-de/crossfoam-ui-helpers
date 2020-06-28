@@ -356,7 +356,6 @@ var blockSplash = function (message) {
     var modalUUID = utils_1.uuid();
     modalContainer
         .setAttribute("class", "cf--modal-container");
-    console.log("blockSplash");
     modalContainer
         .setAttribute("id", "cf--modal-container-" + modalUUID);
     modalContainer
