@@ -451,4 +451,10 @@ const formatNumber = (n: number, lang: string): string => {
   return parts.join((lang === "de") ? "," : ".");
 };
 
-export { blockSplash, colorPicker, formatNumber, isRetinaDisplay, logoSpinner, modal };
+const setHTML = (selector: string, html: string) => {
+  const node = document.querySelector(selector);
+  node.innerHTML = "";
+  node.insertAdjacentHTML("afterbegin", html);
+};
+
+export { blockSplash, colorPicker, formatNumber, isRetinaDisplay, logoSpinner, modal, setHTML };

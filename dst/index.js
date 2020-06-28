@@ -374,4 +374,10 @@ var formatNumber = function (n, lang) {
     return parts.join((lang === "de") ? "," : ".");
 };
 exports.formatNumber = formatNumber;
+var setHTML = function (selector, html) {
+    var node = document.querySelector(selector);
+    node.innerHTML = "";
+    node.insertAdjacentHTML("afterbegin", html);
+};
+exports.setHTML = setHTML;
 //# sourceMappingURL=index.js.map
