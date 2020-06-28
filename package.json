@@ -1,6 +1,6 @@
 {
   "name": "@crossfoam/ui-helpers",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "ui helpers",
   "main": "dst/index.js",
   "scripts": {

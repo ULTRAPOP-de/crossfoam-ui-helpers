@@ -468,4 +468,4 @@ const addHTML = (node: Element, html: string) => {
   });
 };
 
-export { blockSplash, colorPicker, formatNumber, isRetinaDisplay, logoSpinner, modal, setHTML };
+export { addHTML, blockSplash, colorPicker, formatNumber, isRetinaDisplay, logoSpinner, modal, setHTML };
