@@ -457,7 +457,7 @@ const setHTML = (selector: string, html: string) => {
 };
 
 const addHTML = (node: Element, html: string) => {
-  node.innerHTML = "";
+  node.textContent = "";
   node.insertAdjacentHTML("afterbegin", html);
 };
 

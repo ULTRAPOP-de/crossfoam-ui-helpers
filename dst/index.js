@@ -378,7 +378,7 @@ var setHTML = function (selector, html) {
 };
 exports.setHTML = setHTML;
 var addHTML = function (node, html) {
-    node.innerHTML = "";
+    node.textContent = "";
     node.insertAdjacentHTML("afterbegin", html);
 };
 //# sourceMappingURL=index.js.map
