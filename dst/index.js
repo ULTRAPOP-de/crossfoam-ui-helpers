@@ -379,6 +379,11 @@ var setHTML = function (selector, html) {
 exports.setHTML = setHTML;
 var addHTML = function (node, html) {
     node.textContent = "";
-    node.insertAdjacentHTML("afterbegin", html);
+    var parser = new DOMParser();
+    var parsed = parser.parseFromString(html, "text/html");
+    var tags = Array.from(parsed.getElementsByTagName("body")[0].childNodes);
+    tags.forEach(function (tag) {
+        node.append(tag);
+    });
 };
 //# sourceMappingURL=index.js.map

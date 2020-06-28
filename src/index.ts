@@ -54,7 +54,7 @@ const modal = (content): Promise<any> => {
   modalContainer
     .setAttribute("id", "cf--modal-container-" + modalUUID);
 
-  addHTML(modalContainer, 
+  addHTML(modalContainer,
     `<div class="cf--modal-box">
     <div class="cf--modal-header"
       style="background-image:url(${
@@ -458,7 +458,14 @@ const setHTML = (selector: string, html: string) => {
 
 const addHTML = (node: Element, html: string) => {
   node.textContent = "";
-  node.insertAdjacentHTML("afterbegin", html);
+
+  const parser = new DOMParser();
+  const parsed = parser.parseFromString(html, `text/html`);
+  const tags = Array.from(parsed.getElementsByTagName(`body`)[0].childNodes);
+
+  tags.forEach((tag) => {
+    node.append(tag);
+  });
 };
 
 export { blockSplash, colorPicker, formatNumber, isRetinaDisplay, logoSpinner, modal, setHTML };
