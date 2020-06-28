@@ -54,8 +54,8 @@ const modal = (content): Promise<any> => {
   modalContainer
     .setAttribute("id", "cf--modal-container-" + modalUUID);
 
-  modalContainer
-    .innerHTML = `<div class="cf--modal-box">
+  addHTML(modalContainer, 
+    `<div class="cf--modal-box">
     <div class="cf--modal-header"
       style="background-image:url(${
         browser.runtime.getURL("assets/images/modal-header" +
@@ -66,7 +66,7 @@ const modal = (content): Promise<any> => {
     <div class="cf--modal-buttons">
       ${modalButtons(content.buttons)}
     </div>
-</div>`;
+</div>`);
 
   document.body.appendChild(modalContainer);
 
@@ -429,11 +429,11 @@ const blockSplash = (message: string): () => void => {
   modalContainer
     .setAttribute("id", "cf--modal-container-" + modalUUID);
 
-  modalContainer
-    .innerHTML = `<div class="cf--modal-box cf--modal-box-transparent">
+  addHTML(modalContainer,
+  `<div class="cf--modal-box cf--modal-box-transparent">
     <div class="cf--modal-spinner"></div>
     <div class="cf--modal-message">v3 ${message || ""}</div>
-</div>`;
+</div>`);
 
   document.body.appendChild(modalContainer);
 
@@ -453,6 +453,10 @@ const formatNumber = (n: number, lang: string): string => {
 
 const setHTML = (selector: string, html: string) => {
   const node = document.querySelector(selector);
+  addHTML(node, html);
+};
+
+const addHTML = (node: Element, html: string) => {
   node.innerHTML = "";
   node.insertAdjacentHTML("afterbegin", html);
 };

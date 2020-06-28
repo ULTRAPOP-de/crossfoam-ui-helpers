@@ -36,9 +36,8 @@ var modal = function (content) {
         .setAttribute("class", "cf--modal-container");
     modalContainer
         .setAttribute("id", "cf--modal-container-" + modalUUID);
-    modalContainer
-        .innerHTML = "<div class=\"cf--modal-box\">\n    <div class=\"cf--modal-header\"\n      style=\"background-image:url(" + browser.runtime.getURL("assets/images/modal-header" +
-        ((isRetinaDisplay) ? "@2x" : "") + ".png") + ");\"></div>\n    <div class=\"cf--modal-title\">" + (content.title || "") + "</div>\n    <div class=\"cf--modal-message\">" + (content.message || "") + "</div>\n    <div class=\"cf--modal-buttons\">\n      " + modalButtons(content.buttons) + "\n    </div>\n</div>";
+    addHTML(modalContainer, "<div class=\"cf--modal-box\">\n    <div class=\"cf--modal-header\"\n      style=\"background-image:url(" + browser.runtime.getURL("assets/images/modal-header" +
+        ((isRetinaDisplay) ? "@2x" : "") + ".png") + ");\"></div>\n    <div class=\"cf--modal-title\">" + (content.title || "") + "</div>\n    <div class=\"cf--modal-message\">" + (content.message || "") + "</div>\n    <div class=\"cf--modal-buttons\">\n      " + modalButtons(content.buttons) + "\n    </div>\n</div>");
     document.body.appendChild(modalContainer);
     return new Promise(function (resolve, reject) {
         content.buttons.forEach(function (button, bi) {
@@ -358,8 +357,7 @@ var blockSplash = function (message) {
         .setAttribute("class", "cf--modal-container");
     modalContainer
         .setAttribute("id", "cf--modal-container-" + modalUUID);
-    modalContainer
-        .innerHTML = "<div class=\"cf--modal-box cf--modal-box-transparent\">\n    <div class=\"cf--modal-spinner\"></div>\n    <div class=\"cf--modal-message\">v3 " + (message || "") + "</div>\n</div>";
+    addHTML(modalContainer, "<div class=\"cf--modal-box cf--modal-box-transparent\">\n    <div class=\"cf--modal-spinner\"></div>\n    <div class=\"cf--modal-message\">v3 " + (message || "") + "</div>\n</div>");
     document.body.appendChild(modalContainer);
     var destroySpinner = logoSpinner("#cf--modal-container-" + modalUUID + " .cf--modal-spinner", 50, "#ffffff");
     return function () {
@@ -376,8 +374,11 @@ var formatNumber = function (n, lang) {
 exports.formatNumber = formatNumber;
 var setHTML = function (selector, html) {
     var node = document.querySelector(selector);
+    addHTML(node, html);
+};
+exports.setHTML = setHTML;
+var addHTML = function (node, html) {
     node.innerHTML = "";
     node.insertAdjacentHTML("afterbegin", html);
 };
-exports.setHTML = setHTML;
 //# sourceMappingURL=index.js.map
