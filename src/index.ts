@@ -1,5 +1,5 @@
 import { uuid } from "@crossfoam/utils";
-import * as d3 from "d3";
+import { drag, event as d3event, scaleLinear, select, selectAll } from "d3";
 
 const modalButtons = (buttons): string => {
 
@@ -244,9 +244,9 @@ const colorPicker = (containerId: string, hiddenId: string, width: number, color
   let y = height - hsl[1] / 100 * height;
   let xBright = Math.round(hsl[2] / 100 * width);
 
-  d3.select(`#${containerId}`).style("line-height", "0");
+  select(`#${containerId}`).style("line-height", "0");
 
-  const colorContainer = d3.select(`#${containerId}`).append("div")
+  const colorContainer = select(`#${containerId}`).append("div")
     .style("position", "relative")
     .style("height", `${height}px`)
     .style("width", `${width}px`)
@@ -258,9 +258,9 @@ const colorPicker = (containerId: string, hiddenId: string, width: number, color
     .attr("width", `${width}px`)
     .attr("height", `${height}px`);
 
-  canvas.call(d3.drag().on("drag", () => {
-    x = Math.max(0, Math.min(d3.event.x, width));
-    y = Math.max(0, Math.min(d3.event.y, height));
+  canvas.call(drag().on("drag", () => {
+    x = Math.max(0, Math.min(d3event.x, width));
+    y = Math.max(0, Math.min(d3event.y, height));
     render();
   }));
 
@@ -281,20 +281,20 @@ const colorPicker = (containerId: string, hiddenId: string, width: number, color
     .style("fill", "transparent")
     .style("stroke", "white");
 
-  const canvasBright = d3.select(`#${containerId}`).append("canvas")
+  const canvasBright = select(`#${containerId}`).append("canvas")
     .style("clear", "both")
     .style("margin-bottom", "5px")
     .attr("width", width)
     .attr("height", heightBright);
 
-  canvasBright.call(d3.drag().on("drag", () => {
-    xBright = Math.max(0, Math.min(Math.round(d3.event.x), width));
+  canvasBright.call(drag().on("drag", () => {
+    xBright = Math.max(0, Math.min(Math.round(d3event.x), width));
     render();
   }));
 
   const contextBright = canvasBright.node().getContext("2d");
 
-  const result = d3.select(`#${containerId}`).append("div")
+  const result = select(`#${containerId}`).append("div")
     .style("clear", "both")
     .style("width", `${width}px`)
     .style("height", `${heightBright}px`);
@@ -319,7 +319,7 @@ const colorPicker = (containerId: string, hiddenId: string, width: number, color
     const rgb = hsl2rgb(hsl);
     const hex = rgb2hex(rgb);
 
-    d3.select(`#${hiddenId}`)
+    select(`#${hiddenId}`)
       .property("value", hex);
 
     result.style("background-color", hex);
@@ -335,9 +335,9 @@ const logoSpinner = (target: string, size: number, color: string = "#338498"): (
   const radius = size / 4;
   const nUuid = "spinner" + uuid();
 
-  const strokeScale = d3.scaleLinear().domain([40, 100]).range([2, 5]);
+  const strokeScale = scaleLinear().domain([40, 100]).range([2, 5]);
 
-  const svg = d3.select(target).append("svg")
+  const svg = select(target).append("svg")
     .attr("id", nUuid)
     .attr("class", "logoSpinner")
     .style("stroke-width", strokeScale(size) + "px")
@@ -386,7 +386,7 @@ const logoSpinner = (target: string, size: number, color: string = "#338498"): (
       .style("stroke", color);
 
   const update = () => {
-    if (d3.selectAll("#" + nUuid).size() === 0) {
+    if (selectAll("#" + nUuid).size() === 0) {
       clearInterval(inter);
     } else {
       rotation += 0.1;
@@ -415,7 +415,7 @@ const logoSpinner = (target: string, size: number, color: string = "#338498"): (
 
   return () => {
     clearInterval(inter);
-    d3.selectAll("#" + nUuid).remove();
+    selectAll("#" + nUuid).remove();
   };
 };
 
@@ -441,7 +441,7 @@ const blockSplash = (message: string): () => void => {
 
   return () => {
     destroySpinner();
-    d3.selectAll("#cf--modal-container-" + modalUUID).remove();
+    selectAll("#cf--modal-container-" + modalUUID).remove();
   };
 };
 

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var utils_1 = require("@crossfoam/utils");
-var d3 = require("d3");
+var d3_1 = require("d3");
 var modalButtons = function (buttons) {
     var buttonStr = "";
     buttons.forEach(function (button, bi) {
@@ -208,8 +208,8 @@ var colorPicker = function (containerId, hiddenId, width, color) {
     var x = hsl[0] / 360 * width;
     var y = height - hsl[1] / 100 * height;
     var xBright = Math.round(hsl[2] / 100 * width);
-    d3.select("#" + containerId).style("line-height", "0");
-    var colorContainer = d3.select("#" + containerId).append("div")
+    d3_1.select("#" + containerId).style("line-height", "0");
+    var colorContainer = d3_1.select("#" + containerId).append("div")
         .style("position", "relative")
         .style("height", height + "px")
         .style("width", width + "px")
@@ -219,9 +219,9 @@ var colorPicker = function (containerId, hiddenId, width, color) {
         .style("margin-bottom", "-" + (height - 5) + "px")
         .attr("width", width + "px")
         .attr("height", height + "px");
-    canvas.call(d3.drag().on("drag", function () {
-        x = Math.max(0, Math.min(d3.event.x, width));
-        y = Math.max(0, Math.min(d3.event.y, height));
+    canvas.call(d3_1.drag().on("drag", function () {
+        x = Math.max(0, Math.min(d3_1.event.x, width));
+        y = Math.max(0, Math.min(d3_1.event.y, height));
         render();
     }));
     var context = canvas.node().getContext("2d");
@@ -238,17 +238,17 @@ var colorPicker = function (containerId, hiddenId, width, color) {
         .attr("r", 5)
         .style("fill", "transparent")
         .style("stroke", "white");
-    var canvasBright = d3.select("#" + containerId).append("canvas")
+    var canvasBright = d3_1.select("#" + containerId).append("canvas")
         .style("clear", "both")
         .style("margin-bottom", "5px")
         .attr("width", width)
         .attr("height", heightBright);
-    canvasBright.call(d3.drag().on("drag", function () {
-        xBright = Math.max(0, Math.min(Math.round(d3.event.x), width));
+    canvasBright.call(d3_1.drag().on("drag", function () {
+        xBright = Math.max(0, Math.min(Math.round(d3_1.event.x), width));
         render();
     }));
     var contextBright = canvasBright.node().getContext("2d");
-    var result = d3.select("#" + containerId).append("div")
+    var result = d3_1.select("#" + containerId).append("div")
         .style("clear", "both")
         .style("width", width + "px")
         .style("height", heightBright + "px");
@@ -267,7 +267,7 @@ var colorPicker = function (containerId, hiddenId, width, color) {
         }
         var rgb = hsl2rgb(hsl);
         var hex = rgb2hex(rgb);
-        d3.select("#" + hiddenId)
+        d3_1.select("#" + hiddenId)
             .property("value", hex);
         result.style("background-color", hex);
     };
@@ -280,8 +280,8 @@ var logoSpinner = function (target, size, color) {
     var height = size;
     var radius = size / 4;
     var nUuid = "spinner" + utils_1.uuid();
-    var strokeScale = d3.scaleLinear().domain([40, 100]).range([2, 5]);
-    var svg = d3.select(target).append("svg")
+    var strokeScale = d3_1.scaleLinear().domain([40, 100]).range([2, 5]);
+    var svg = d3_1.select(target).append("svg")
         .attr("id", nUuid)
         .attr("class", "logoSpinner")
         .style("stroke-width", strokeScale(size) + "px")
@@ -321,7 +321,7 @@ var logoSpinner = function (target, size, color) {
         .attr("mask", "url(#hole)")
         .style("stroke", color);
     var update = function () {
-        if (d3.selectAll("#" + nUuid).size() === 0) {
+        if (d3_1.selectAll("#" + nUuid).size() === 0) {
             clearInterval(inter);
         }
         else {
@@ -346,7 +346,7 @@ var logoSpinner = function (target, size, color) {
         .style("stroke", "transparent");
     return function () {
         clearInterval(inter);
-        d3.selectAll("#" + nUuid).remove();
+        d3_1.selectAll("#" + nUuid).remove();
     };
 };
 exports.logoSpinner = logoSpinner;
@@ -362,7 +362,7 @@ var blockSplash = function (message) {
     var destroySpinner = logoSpinner("#cf--modal-container-" + modalUUID + " .cf--modal-spinner", 50, "#ffffff");
     return function () {
         destroySpinner();
-        d3.selectAll("#cf--modal-container-" + modalUUID).remove();
+        d3_1.selectAll("#cf--modal-container-" + modalUUID).remove();
     };
 };
 exports.blockSplash = blockSplash;
